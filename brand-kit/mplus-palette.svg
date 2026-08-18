@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900">
+<rect width="1500" height="900" fill="#FFFFFF"/>
+<text x="40" y="70" font-family="Helvetica,Arial" font-size="42" font-weight="bold" fill="#242624">M+ Mid-Tone Palette</text>
+<text x="40" y="110" font-family="Helvetica,Arial" font-size="20" fill="#242624">All colours calibrated to equal luminance of 50% black — 所有色彩明度等同 50% 黑</text>
+<rect x="8.0" y="140" width="171.5" height="210" fill="#EA6401"/>
+<text x="14.0" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Orange</text>
+<text x="14.0" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 橙</text>
+<text x="14.0" y="428" font-family="monospace" font-size="15" fill="#666">#EA6401</text>
+<rect x="195.5" y="140" width="171.5" height="210" fill="#F17318"/>
+<text x="201.5" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Vivid Orange</text>
+<text x="201.5" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 亮橙</text>
+<text x="201.5" y="428" font-family="monospace" font-size="15" fill="#666">#F17318</text>
+<rect x="383.0" y="140" width="171.5" height="210" fill="#D6AA02"/>
+<text x="389.0" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Gold</text>
+<text x="389.0" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 金</text>
+<text x="389.0" y="428" font-family="monospace" font-size="15" fill="#666">#D6AA02</text>
+<rect x="570.5" y="140" width="171.5" height="210" fill="#DBAE19"/>
+<text x="576.5" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Amber</text>
+<text x="576.5" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 琥珀</text>
+<text x="576.5" y="428" font-family="monospace" font-size="15" fill="#666">#DBAE19</text>
+<rect x="758.0" y="140" width="171.5" height="210" fill="#69A01C"/>
+<text x="764.0" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Olive</text>
+<text x="764.0" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 橄榄绿</text>
+<text x="764.0" y="428" font-family="monospace" font-size="15" fill="#666">#69A01C</text>
+<rect x="945.5" y="140" width="171.5" height="210" fill="#4F9E7B"/>
+<text x="951.5" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Green</text>
+<text x="951.5" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 绿</text>
+<text x="951.5" y="428" font-family="monospace" font-size="15" fill="#666">#4F9E7B</text>
+<rect x="1133.0" y="140" width="171.5" height="210" fill="#5AACA2"/>
+<text x="1139.0" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Teal</text>
+<text x="1139.0" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 青</text>
+<text x="1139.0" y="428" font-family="monospace" font-size="15" fill="#666">#5AACA2</text>
+<rect x="1320.5" y="140" width="171.5" height="210" fill="#02A5E9"/>
+<text x="1326.5" y="380" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Cyan</text>
+<text x="1326.5" y="404" font-family="sans-serif" font-size="15" fill="#242624">M+ 天青</text>
+<text x="1326.5" y="428" font-family="monospace" font-size="15" fill="#666">#02A5E9</text>
+<rect x="8.0" y="440" width="171.5" height="210" fill="#67BDEC"/>
+<text x="14.0" y="680" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Sky Blue</text>
+<text x="14.0" y="704" font-family="sans-serif" font-size="15" fill="#242624">M+ 蓝</text>
+<text x="14.0" y="728" font-family="monospace" font-size="15" fill="#666">#67BDEC</text>
+<rect x="195.5" y="440" width="171.5" height="210" fill="#A581C3"/>
+<text x="201.5" y="680" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Lavender</text>
+<text x="201.5" y="704" font-family="sans-serif" font-size="15" fill="#242624">M+ 紫</text>
+<text x="201.5" y="728" font-family="monospace" font-size="15" fill="#666">#A581C3</text>
+<rect x="383.0" y="440" width="171.5" height="210" fill="#DC77B2"/>
+<text x="389.0" y="680" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Magenta Pink</text>
+<text x="389.0" y="704" font-family="sans-serif" font-size="15" fill="#242624">M+ 品红粉</text>
+<text x="389.0" y="728" font-family="monospace" font-size="15" fill="#666">#DC77B2</text>
+<rect x="570.5" y="440" width="171.5" height="210" fill="#D38A69"/>
+<text x="576.5" y="680" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Dusty Pink</text>
+<text x="576.5" y="704" font-family="sans-serif" font-size="15" fill="#242624">M+ 灰粉</text>
+<text x="576.5" y="728" font-family="monospace" font-size="15" fill="#666">#D38A69</text>
+<rect x="758.0" y="440" width="171.5" height="210" fill="#DC7E47"/>
+<text x="764.0" y="680" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Coral</text>
+<text x="764.0" y="704" font-family="sans-serif" font-size="15" fill="#242624">M+ 珊瑚</text>
+<text x="764.0" y="728" font-family="monospace" font-size="15" fill="#666">#DC7E47</text>
+<rect x="945.5" y="440" width="171.5" height="210" fill="#A1AD8D"/>
+<text x="951.5" y="680" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Sage</text>
+<text x="951.5" y="704" font-family="sans-serif" font-size="15" fill="#242624">M+ 灰绿</text>
+<text x="951.5" y="728" font-family="monospace" font-size="15" fill="#666">#A1AD8D</text>
+<rect x="1133.0" y="440" width="171.5" height="210" fill="#A7A5A8"/>
+<text x="1139.0" y="680" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">M+ Mid Grey</text>
+<text x="1139.0" y="704" font-family="sans-serif" font-size="15" fill="#242624">M+ 中灰</text>
+<text x="1139.0" y="728" font-family="monospace" font-size="15" fill="#666">#A7A5A8</text>
+<rect x="8.0" y="740" width="484.0" height="90" fill="#242624" stroke="#ddd"/>
+<text x="20.0" y="780" font-family="Helvetica" font-size="17" font-weight="bold" fill="#FFFFFF">Ink Black 墨黑</text>
+<text x="20.0" y="804" font-family="monospace" font-size="15" fill="#FFFFFF">#242624</text>
+<rect x="508.0" y="740" width="484.0" height="90" fill="#808080" stroke="#ddd"/>
+<text x="520.0" y="780" font-family="Helvetica" font-size="17" font-weight="bold" fill="#FFFFFF">50% Black (校准基准) 50% 黑</text>
+<text x="520.0" y="804" font-family="monospace" font-size="15" fill="#FFFFFF">#808080</text>
+<rect x="1008.0" y="740" width="484.0" height="90" fill="#F2F2F2" stroke="#ddd"/>
+<text x="1020.0" y="780" font-family="Helvetica" font-size="17" font-weight="bold" fill="#242624">Paper White 纸白</text>
+<text x="1020.0" y="804" font-family="monospace" font-size="15" fill="#242624">#F2F2F2</text>
+</svg>

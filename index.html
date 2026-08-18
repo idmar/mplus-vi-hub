@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M+ 视觉识别研究面板 — Visual Identity Research Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#242624;--paper:#F4F3F0;--grey:#808080;--orange:#EA6401;--pink:#DC77B2;--cyan:#02A5E9;--green:#4F9E7B;--gold:#D6AA02;--lav:#A581C3;}
+html{scroll-behavior:smooth}
+body{font-family:"Helvetica Neue",Helvetica,Arial,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:var(--paper);color:var(--ink);line-height:1.65}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+header.hero{background:var(--ink);color:#fff;padding:64px 0 0}
+.hero-strip{display:flex;height:10px}
+.hero-strip span{flex:1}
+.hero h1{font-size:clamp(38px,6vw,72px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+.hero .sub{margin-top:18px;color:#cfcfcf;max-width:820px;font-size:17px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding-bottom:48px}
+.badge{border:1px solid #555;border-radius:999px;padding:6px 16px;font-size:13px;color:#eee}
+nav.top{position:sticky;top:0;background:var(--ink);z-index:50;border-top:1px solid #3a3a3a}
+nav.top .wrap{display:flex;gap:6px;overflow-x:auto;padding:0 24px}
+nav.top a{color:#ddd;text-decoration:none;font-size:14px;padding:14px 16px;white-space:nowrap;border-bottom:3px solid transparent}
+nav.top a:hover{color:#fff;border-bottom-color:var(--orange)}
+section{padding:72px 0}
+h2.sec{font-size:32px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.sec-sub{color:#666;max-width:760px;margin-bottom:40px}
+.kicker{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:10px;font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #e4e2de;border-radius:14px;padding:26px}
+.stat{font-size:44px;font-weight:700;line-height:1}
+.stat small{font-size:15px;color:#777;font-weight:400;display:block;margin-top:8px}
+.timeline{border-left:3px solid var(--ink);margin:14px 0 0 6px;padding-left:26px}
+.timeline li{list-style:none;position:relative;margin-bottom:22px}
+.timeline li:before{content:"";position:absolute;left:-34px;top:7px;width:11px;height:11px;background:var(--paper);border:3px solid var(--ink);border-radius:50%}
+.timeline b{font-size:15px}
+.awards{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.award{background:#fff;border:1px solid #e4e2de;border-radius:10px;padding:10px 16px;font-size:14px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:900px){.twocol{grid-template-columns:1fr}}
+.sys-card{background:#fff;border:1px solid #e4e2de;border-radius:16px;padding:30px;margin-bottom:26px}
+.sys-card h3{font-size:20px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+.palette-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:16px}
+.swatch{border-radius:10px;overflow:hidden;border:1px solid #e4e2de;background:#fff}
+.swatch .c{height:64px}
+.swatch .t{padding:8px 10px;font-size:12px;line-height:1.4}
+.swatch .t b{display:block;font-size:12px}
+.swatch .hex{color:#777;font-family:ui-monospace,Menlo,monospace;font-size:11px}
+.note{background:#FBF3E4;border-left:4px solid var(--gold);border-radius:8px;padding:14px 18px;font-size:14px;margin-top:18px}
+.kit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.kit-card{background:#fff;border:1px solid #e4e2de;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.kit-card img{width:100%;height:200px;object-fit:contain;background:#fafafa;border-bottom:1px solid #eee;padding:14px}
+.kit-card .b{padding:18px 20px;flex:1}
+.kit-card h4{font-size:16px;margin-bottom:6px}
+.kit-card p{font-size:13.5px;color:#666}
+.dl{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--orange)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tab{border:1px solid #cfcfcf;background:#fff;border-radius:999px;padding:8px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.g-card{background:#fff;border:1px solid #e4e2de;border-radius:14px;overflow:hidden;cursor:zoom-in;display:flex;flex-direction:column}
+.g-card img{width:100%;height:210px;object-fit:cover;display:block}
+.g-card .b{padding:14px 16px;font-size:13.5px}
+.g-card .b .fn{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#999;margin-bottom:6px}
+.g-card .app{margin-top:8px;padding-top:8px;border-top:1px dashed #e0e0e0;color:#555}
+.g-card .app b{color:var(--orange)}
+.src-list li{margin-bottom:12px;font-size:14.5px}
+.src-list a{color:#1a6fb5}
+footer{background:var(--ink);color:#bbb;padding:40px 0;font-size:13px}
+footer b{color:#fff}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;padding:30px}
+#lightbox img{max-width:92vw;max-height:78vh;border-radius:8px}
+#lightbox .cap{color:#eee;max-width:860px;margin-top:16px;font-size:14.5px;text-align:center}
+#lightbox .x{position:absolute;top:18px;right:26px;color:#fff;font-size:34px;cursor:pointer}
+.table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden}
+.table th{background:var(--ink);color:#fff;text-align:left;padding:12px 14px;font-weight:600}
+.table td{padding:11px 14px;border-bottom:1px solid #eee;vertical-align:top}
+</style></head><body>
+<header class="hero"><div class="wrap">
+<h1>M+ 视觉识别<br>研究面板 <span style="color:#EA6401">/</span> 品牌视觉套件</h1>
+<p class="sub">香港 M+ 博物馆视觉识别系统（Visual Identity）系统研究：由阿姆斯特丹设计工作室 <b style="color:#fff">thonik</b> 设计，基于 M+ 官方图片与文字资料整理。本面板收录 4 个官方/权威来源的全部 <b style="color:#fff">43 张项目图片</b>，逐图解读其应用方式，并输出基于官方资料提取的品牌视觉套件。</p>
+<div class="badges">
+<span class="badge">M+ 博物馆 · 香港西九文化区</span>
+<span class="badge">VI 设计：thonik（阿姆斯特丹）</span>
+<span class="badge">标志设计：North（伦敦）</span>
+<span class="badge">建筑：Herzog &amp; de Meuron</span>
+<span class="badge">开馆：2021-11-12</span>
+<span class="badge">资料时点：2026-08-18</span>
+</div></div>
+<div class="hero-strip">
+<span style="background:#EA6401"></span><span style="background:#F17318"></span><span style="background:#D6AA02"></span><span style="background:#DBAE19"></span><span style="background:#69A01C"></span><span style="background:#4F9E7B"></span><span style="background:#5AACA2"></span><span style="background:#02A5E9"></span><span style="background:#67BDEC"></span><span style="background:#A581C3"></span><span style="background:#DC77B2"></span><span style="background:#D38A69"></span><span style="background:#DC7E47"></span><span style="background:#A1AD8D"></span><span style="background:#A7A5A8"></span>
+</div></header>
+<nav class="top"><div class="wrap">
+<a href="#overview">项目概览</a><a href="#system">识别系统解读</a><a href="#kit">品牌视觉套件</a><a href="#gallery">图片档案馆（43）</a><a href="#sources">资料来源</a>
+</div></nav>
+
+<section id="overview"><div class="wrap">
+<div class="kicker">Overview</div><h2 class="sec">项目概览</h2>
+<p class="sec-sub">M+ 是亚洲首间全球性当代视觉文化博物馆，聚焦 20–21 世纪视觉艺术、设计、建筑、流动影像与香港视觉文化。馆名「M+」意为「museum and more」（博物馆与更多）。2019 年 4 月，为配合 2021 年开馆，M+ 启动品牌视觉项目：标志由英国工作室 North 先行设计完成（建筑倒 T 形的抽象化），thonik 受邀在其基础上开发覆盖实体与数字平台的整套视觉识别系统。</p>
+<div class="cards">
+<div class="card"><div class="stat">43<small>张官方项目图片<br>全部收录并逐图解读</small></div></div>
+<div class="card"><div class="stat">4<small>个权威来源<br>Dezeen + thonik 官网 ×3</small></div></div>
+<div class="card"><div class="stat">≈1000<small>种中明度色彩<br>约相当于 1000 个 Pantone 色</small></div></div>
+<div class="card"><div class="stat">50%<small>全部色彩明度校准至<br>等同 50% 黑</small></div></div>
+</div>
+<div class="twocol" style="margin-top:48px">
+<div>
+<h3 style="font-size:19px;margin-bottom:16px">项目时间线</h3>
+<ul class="timeline">
+<li><b>2013–2019</b> — M+ 筹建，馆名「M+」沿用自工作名称；英国 North 完成「M+」标志设计</li>
+<li><b>2019.04</b> — M+ 启动品牌视觉识别项目，thonik 受邀开发完整 VI 系统</li>
+<li><b>2021.11.12</b> — M+ 正式开馆；VI 随开馆 campaign 全面落地（户外大屏、港铁包站、叮叮车涂装、LED 立面）</li>
+<li><b>2021–2022</b> — 《M+ Annual Review》年报出版，成为色彩识别系统首个完整印刷载体</li>
+<li><b>2022.10</b> — 项目经 Dezeen 等媒体公开发布，入围 Dezeen Awards 2022 平面设计类</li>
+<li><b>2022–2023</b> — 获 DFA 亚洲最具影响力设计奖 2022 大奖、欧洲设计奖铜奖、Tokyo TDC 2023 提名</li>
+</ul>
+</div>
+<div>
+<h3 style="font-size:19px;margin-bottom:16px">设计团队与协作方</h3>
+<table class="table">
+<tr><th>角色</th><th>机构</th></tr>
+<tr><td>视觉识别系统（VI）</td><td><b>thonik</b>（阿姆斯特丹，1993 年由 Nikki Gonnissen 与 Thomas Widdershoven 创立）</td></tr>
+<tr><td>M+ 标志（logo）</td><td>North（英国伦敦）</td></tr>
+<tr><td>建筑设计</td><td>Herzog &amp; de Meuron（瑞士）+ TFP Farrells + Arup</td></tr>
+<tr><td>网站设计</td><td>Anton &amp; Irene（纽约，后端 Torchbox）</td></tr>
+<tr><td>馆内导视</td><td>Cartlidge Levene（伦敦）</td></tr>
+<tr><td>项目摄影</td><td>SWKIT、Kimberley Zondag</td></tr>
+</table>
+<h3 style="font-size:19px;margin:26px 0 12px">奖项</h3>
+<div class="awards">
+<span class="award">DFA 亚洲最具影响力设计奖 2022 · 大奖</span>
+<span class="award">Dezeen Awards 2022 · 平面设计类入围</span>
+<span class="award">欧洲设计奖 · 铜奖</span>
+<span class="award">Tokyo TDC 2023 · 提名并收录年鉴 Vol.34</span>
+</div>
+</div></div>
+</div></section>
+
+<section id="system" style="background:#fff"><div class="wrap">
+<div class="kicker">Identity System</div><h2 class="sec">识别系统解读</h2>
+<p class="sec-sub">thonik 的方案被设计媒体称为「科学的、概念的、以人为本」的识别系统。以下基于官方资料（thonik 项目故事、Dezeen 报道、M+ 年报内文）提炼其四大支柱。</p>
+
+<div class="twocol">
+<div class="sys-card"><h3><span class="dot" style="background:#242624"></span>1 · 标志逻辑（Logo by North）</h3>
+<p style="font-size:14.5px">「M+」标志由英国 <b>North</b> 工作室设计，是 Herzog &amp; de Meuron 建筑<b>倒 T 形体</b>的抽象化；「M」与「+」的组合呼应馆名「museum and more」。thonik 的整套视觉语言同样从建筑倒 T 几何形出发——年报与 campaign 中满版的倒 T / 加号图案即由此而来。</p></div>
+<div class="sys-card"><h3><span class="dot" style="background:#EA6401"></span>2 · 色彩科学：50% 黑等明度</h3>
+<p style="font-size:14.5px">核心是一套<b>中明度色（mid-tone）</b>系统：模拟人眼视锥/视杆细胞成像原理，借鉴包豪斯色彩理论家 <b>Johannes Itten</b> 的实验，把 RGB 色彩与 50% 黑混合校准——太亮的黄被压暗、太暗的紫被提亮、红色转为粉色。测试方法：Photoshop 中将色块与 50% 黑色块并置、转灰度后无明度差即合格。由此生成约相当于 <b>1000 个 Pantone 色</b>的色库，制造所谓「visual tickle」（视觉挠痒）的意外色彩并置。</p>
+<div class="note">功能结果：由于所有颜色明度一致，任何颜色作背景时，<b>黑色或白色文字始终清晰可读</b>，且在印刷、LED 屏、网页等任何媒介上输出稳定。</div></div>
+<div class="sys-card"><h3><span class="dot" style="background:#02A5E9"></span>3 · 城市叙事：霓虹 × 高楼灰</h3>
+<p style="font-size:14.5px">色彩概念直接呼应香港城市肌理——「灰色高层楼宇」与「霓虹商业招牌」共存。thonik 的表述：「一个独特的色彩概念，把鲜活的绿、蓝、橙与柔和的色调及灰色桥接起来。」灰色（M+ 建筑陶瓦立面色）同时是整套系统的明度基准。</p></div>
+<div class="sys-card"><h3><span class="dot" style="background:#DC77B2"></span>4 · 双语排版：「+」的两个方向</h3>
+<p style="font-size:14.5px"><b>英文横排、中文竖排</b>——两个排版方向恰好对应「+」的一横一竖。这一规则贯穿户外大屏、年报内页与网站。西文字体经官网核查为 <b>Simplistic</b>（荷兰字厂 Bold Monday 出品的定制版「SimplisticMplus」），中文搭配 <b>Noto Sans TC/SC</b>（思源黑体）。</p></div>
+</div>
+
+<h3 style="font-size:20px;margin:44px 0 6px">M+ 中调色板（自官方图片取色）</h3>
+<p style="color:#666;font-size:14px;max-width:760px">以下 15 个主色 + 3 个中性色全部从 thonik 官方发布的项目图片（色轮图、年报图案、开馆 campaign 实景）中采样提取。thonik 未公布官方 hex 数值，此色板为研究性重建，供设计参考。</p>
+<div class="palette-grid"><div class="swatch"><div class="c" style="background:#EA6401"></div><div class="t"><b>M+ Orange</b>M+ 橙<br><span class="hex">#EA6401</span></div></div><div class="swatch"><div class="c" style="background:#F17318"></div><div class="t"><b>M+ Vivid Orange</b>M+ 亮橙<br><span class="hex">#F17318</span></div></div><div class="swatch"><div class="c" style="background:#D6AA02"></div><div class="t"><b>M+ Gold</b>M+ 金<br><span class="hex">#D6AA02</span></div></div><div class="swatch"><div class="c" style="background:#DBAE19"></div><div class="t"><b>M+ Amber</b>M+ 琥珀<br><span class="hex">#DBAE19</span></div></div><div class="swatch"><div class="c" style="background:#69A01C"></div><div class="t"><b>M+ Olive</b>M+ 橄榄绿<br><span class="hex">#69A01C</span></div></div><div class="swatch"><div class="c" style="background:#4F9E7B"></div><div class="t"><b>M+ Green</b>M+ 绿<br><span class="hex">#4F9E7B</span></div></div><div class="swatch"><div class="c" style="background:#5AACA2"></div><div class="t"><b>M+ Teal</b>M+ 青<br><span class="hex">#5AACA2</span></div></div><div class="swatch"><div class="c" style="background:#02A5E9"></div><div class="t"><b>M+ Cyan</b>M+ 天青<br><span class="hex">#02A5E9</span></div></div><div class="swatch"><div class="c" style="background:#67BDEC"></div><div class="t"><b>M+ Sky Blue</b>M+ 蓝<br><span class="hex">#67BDEC</span></div></div><div class="swatch"><div class="c" style="background:#A581C3"></div><div class="t"><b>M+ Lavender</b>M+ 紫<br><span class="hex">#A581C3</span></div></div><div class="swatch"><div class="c" style="background:#DC77B2"></div><div class="t"><b>M+ Magenta Pink</b>M+ 品红粉<br><span class="hex">#DC77B2</span></div></div><div class="swatch"><div class="c" style="background:#D38A69"></div><div class="t"><b>M+ Dusty Pink</b>M+ 灰粉<br><span class="hex">#D38A69</span></div></div><div class="swatch"><div class="c" style="background:#DC7E47"></div><div class="t"><b>M+ Coral</b>M+ 珊瑚<br><span class="hex">#DC7E47</span></div></div><div class="swatch"><div class="c" style="background:#A1AD8D"></div><div class="t"><b>M+ Sage</b>M+ 灰绿<br><span class="hex">#A1AD8D</span></div></div><div class="swatch"><div class="c" style="background:#A7A5A8"></div><div class="t"><b>M+ Mid Grey</b>M+ 中灰<br><span class="hex">#A7A5A8</span></div></div><div class="swatch"><div class="c" style="background:#242624"></div><div class="t"><b>Ink Black</b>墨黑<br><span class="hex">#242624</span></div></div><div class="swatch"><div class="c" style="background:#808080"></div><div class="t"><b>50% Black（校准基准）</b>50% 黑<br><span class="hex">#808080</span></div></div><div class="swatch"><div class="c" style="background:#F2F2F2"></div><div class="t"><b>Paper White</b>纸白<br><span class="hex">#F2F2F2</span></div></div></div>
+</div></section>
+
+<section id="kit"><div class="wrap">
+<div class="kicker">Brand Visual Kit</div><h2 class="sec">品牌视觉套件</h2>
+<p class="sec-sub">基于官方资料重建的 M+ 品牌视觉套件：全部色值取自 thonik 官方发布的项目图片，图形规则依据年报与 campaign 中的应用方式复原。SVG 矢量格式，可直接用于设计软件。</p>
+<div class="kit-grid">
+<div class="kit-card"><img src="brand-kit/mplus-palette.svg" alt="palette"><div class="b"><h4>M+ 中调色板卡</h4><p>15 主色 + 3 中性色，中英双语命名与 hex 值；所有色彩明度等同 50% 黑。</p><a class="dl" href="brand-kit/mplus-palette.svg" download>下载 SVG →</a></div></div>
+<div class="kit-card"><img src="brand-kit/mplus-colour-wheel.svg" alt="wheel"><div class="b"><h4>M+ 色轮（重建）</h4><p>依据年报第 192 页「A New M+ Visual Identity」色轮图重建：12 个中调色段 + 50% 灰轮心。</p><a class="dl" href="brand-kit/mplus-colour-wheel.svg" download>下载 SVG →</a></div></div>
+<div class="kit-card"><img src="brand-kit/mplus-pattern-1.svg" alt="p1"><div class="b"><h4>加号图案 · 橙×灰粉</h4><p>复原年报满版「+」图案（thonik-chromatic-01 同款配色）。</p><a class="dl" href="brand-kit/mplus-pattern-1.svg" download>下载 SVG →</a></div></div>
+<div class="kit-card"><img src="brand-kit/mplus-pattern-2.svg" alt="p2"><div class="b"><h4>加号图案 · 金×品红粉</h4><p>复原年报满版「+」图案（thonik-chromatic-04 同款配色）。</p><a class="dl" href="brand-kit/mplus-pattern-2.svg" download>下载 SVG →</a></div></div>
+<div class="kit-card"><img src="brand-kit/mplus-pattern-3.svg" alt="p3"><div class="b"><h4>加号图案 · 天青×绿</h4><p>复原年报格纹图案（thonik-chromatic-06 同款配色）。</p><a class="dl" href="brand-kit/mplus-pattern-3.svg" download>下载 SVG →</a></div></div>
+<div class="kit-card"><img src="brand-kit/mplus-pattern-4.svg" alt="p4"><div class="b"><h4>加号图案 · 紫×灰绿</h4><p>复原年报格纹图案（thonik-chromatic-05 同款配色）。</p><a class="dl" href="brand-kit/mplus-pattern-4.svg" download>下载 SVG →</a></div></div>
+</div>
+<div class="note" style="margin-top:26px">使用规则（依据官方应用方式总结）：① 任何中调色背景上只使用纯黑或纯白文字；② 图形母题仅使用倒 T / 加号形及其平铺；③ 英文横排、中文竖排；④ 多色并置时保持明度一致，追求「visual tickle」效果；⑤ 正式应用中 M+ 标志的版权归属 M+ 博物馆与 North，本套件仅供研究学习。</div>
+</div></section>
+<section id="gallery" style="background:#fff"><div class="wrap">
+<div class="kicker">Image Archive</div><h2 class="sec">图片档案馆 · 43 张官方图片</h2>
+<p class="sec-sub">4 个指定网页中的全部项目图片（社交分享缩略图与其他项目缩略图除外），每张附画面描述与 VI 应用方式解读。点击图片可放大查看。</p>
+<div class="tabs">
+<button class="tab active" data-f="all">全部（43）</button>
+<button class="tab" data-f="dezeen">Dezeen 报道（13）</button>
+<button class="tab" data-f="thonik-open">thonik · Open M+（8）</button>
+<button class="tab" data-f="thonik-chromatic">thonik · 色彩识别（9）</button>
+<button class="tab" data-f="thonik-annual">thonik · 年报（13）</button>
+</div>
+<h3 class="g-head" data-g="dezeen" style="font-size:18px;margin:30px 0 6px">Dezeen —《Thonik creates colourful visual identity for Hong Kong's M+ museum》</h3>
+<p class="g-head" data-g="dezeen" style="font-size:13px;color:#888;margin-bottom:16px"><a href="https://www.dezeen.com/2022/10/18/thonik-visual-identity-m-museum/" style="color:#1a6fb5">https://www.dezeen.com/2022/10/18/thonik-visual-identity-m-museum/</a></p>
+<div class="gallery">
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-01.jpg" data-cap="港铁站内巨型电子屏：M+ 色块背景上并置波普女性人像、「+」符号与国画立轴｜应用：开馆 campaign 的数字户外广告——将不同门类馆藏视觉（波普、水墨）与中调色块并置，体现「视觉文化」的跨媒介定位">
+<img loading="lazy" src="images/dezeen/dezeen-01.jpg" alt="dezeen-01.jpg">
+<div class="b"><div class="fn">dezeen-01.jpg</div>港铁站内巨型电子屏：M+ 色块背景上并置波普女性人像、「+」符号与国画立轴<div class="app"><b>应用解读</b>｜开馆 campaign 的数字户外广告——将不同门类馆藏视觉（波普、水墨）与中调色块并置，体现「视觉文化」的跨媒介定位</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-02.jpg" data-cap="服务台前访客翻阅粉色「成为 M+ 一分子」手册，台面陈列彩色 M+You 会员小册｜应用：印刷品应用：会员计划手册与导览折页采用中调粉色系，色块即是版式骨架">
+<img loading="lazy" src="images/dezeen/dezeen-02.jpg" alt="dezeen-02.jpg">
+<div class="b"><div class="fn">dezeen-02.jpg</div>服务台前访客翻阅粉色「成为 M+ 一分子」手册，台面陈列彩色 M+You 会员小册<div class="app"><b>应用解读</b>｜印刷品应用：会员计划手册与导览折页采用中调粉色系，色块即是版式骨架</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-03.jpg" data-cap="西九龙隧道口道路旁两块 M+ 高炮广告牌，背景为香港天际线｜应用：户外高炮广告：超大尺度下色块切割构图保持识别度，中英文信息嵌入色带">
+<img loading="lazy" src="images/dezeen/dezeen-03.jpg" alt="dezeen-03.jpg">
+<div class="b"><div class="fn">dezeen-03.jpg</div>西九龙隧道口道路旁两块 M+ 高炮广告牌，背景为香港天际线<div class="app"><b>应用解读</b>｜户外高炮广告：超大尺度下色块切割构图保持识别度，中英文信息嵌入色带</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-04.jpg" data-cap="铜锣湾街景：崇光百货巨型 M+ 开幕 LED 屏与 M+ 涂装叮叮车同框｜应用：城市级媒体组合：地标大屏+电车车身，放大「M+」字形作为超级图形母题">
+<img loading="lazy" src="images/dezeen/dezeen-04.jpg" alt="dezeen-04.jpg">
+<div class="b"><div class="fn">dezeen-04.jpg</div>铜锣湾街景：崇光百货巨型 M+ 开幕 LED 屏与 M+ 涂装叮叮车同框<div class="app"><b>应用解读</b>｜城市级媒体组合：地标大屏+电车车身，放大「M+」字形作为超级图形母题</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-05.jpg" data-cap="维港黄昏，M+ 大楼临海 LED 立面显示青/品红/绿三色块上的白色 M+ 标志｜应用：建筑即媒介：Herzog & de Meuron 设计的 LED 幕墙作为海港对岸可见的品牌界面">
+<img loading="lazy" src="images/dezeen/dezeen-05.jpg" alt="dezeen-05.jpg">
+<div class="b"><div class="fn">dezeen-05.jpg</div>维港黄昏，M+ 大楼临海 LED 立面显示青/品红/绿三色块上的白色 M+ 标志<div class="app"><b>应用解读</b>｜建筑即媒介：Herzog & de Meuron 设计的 LED 幕墙作为海港对岸可见的品牌界面</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-06.jpg" data-cap="港铁站扶梯两侧墙体与屏幕被 M+ 彩色画面全覆盖，乘客穿行其间｜应用：地铁站包站广告（station domination）：橙/绿/品红/蓝四色并置制造「visual tickle」">
+<img loading="lazy" src="images/dezeen/dezeen-06.jpg" alt="dezeen-06.jpg">
+<div class="b"><div class="fn">dezeen-06.jpg</div>港铁站扶梯两侧墙体与屏幕被 M+ 彩色画面全覆盖，乘客穿行其间<div class="app"><b>应用解读</b>｜地铁站包站广告（station domination）：橙/绿/品红/蓝四色并置制造「visual tickle」</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-07.jpg" data-cap="夜景中 M+ 涂装叮叮车驶过巨型天台广告牌「M+ M+」｜应用：户外大牌+电车广告的夜间版本，中调色在夜景照明下依然稳定输出">
+<img loading="lazy" src="images/dezeen/dezeen-07.jpg" alt="dezeen-07.jpg">
+<div class="b"><div class="fn">dezeen-07.jpg</div>夜景中 M+ 涂装叮叮车驶过巨型天台广告牌「M+ M+」<div class="app"><b>应用解读</b>｜户外大牌+电车广告的夜间版本，中调色在夜景照明下依然稳定输出</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-08.jpg" data-cap="港铁站落地大灯箱屏展示 M+ 开幕视觉，行人经过｜应用：地铁站灯箱/数字屏广告：统一模板承载开幕日期与双语标语">
+<img loading="lazy" src="images/dezeen/dezeen-08.jpg" alt="dezeen-08.jpg">
+<div class="b"><div class="fn">dezeen-08.jpg</div>港铁站落地大灯箱屏展示 M+ 开幕视觉，行人经过<div class="app"><b>应用解读</b>｜地铁站灯箱/数字屏广告：统一模板承载开幕日期与双语标语</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-09.jpg" data-cap="黄底上陈列的彩色 M+ 棋盘格收纳包/化妆包系列｜应用：博物馆商店周边：中调色谱直接转译为产品配色与棋盘格图案">
+<img loading="lazy" src="images/dezeen/dezeen-09.jpg" alt="dezeen-09.jpg">
+<div class="b"><div class="fn">dezeen-09.jpg</div>黄底上陈列的彩色 M+ 棋盘格收纳包/化妆包系列<div class="app"><b>应用解读</b>｜博物馆商店周边：中调色谱直接转译为产品配色与棋盘格图案</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-10.jpg" data-cap="M+ 商店内托特包、礼盒等文创商品陈列｜应用：零售文创产品线：品牌色彩系统延展至包装与织物">
+<img loading="lazy" src="images/dezeen/dezeen-10.jpg" alt="dezeen-10.jpg">
+<div class="b"><div class="fn">dezeen-10.jpg</div>M+ 商店内托特包、礼盒等文创商品陈列<div class="app"><b>应用解读</b>｜零售文创产品线：品牌色彩系统延展至包装与织物</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-11.jpg" data-cap="四台笔记本展示 M+ 网站页面（What's On、Collection Online、Become a Member）｜应用：数字界面应用：网站（Anton & Irene 设计）延展同一色彩与栅格语言">
+<img loading="lazy" src="images/dezeen/dezeen-11.jpg" alt="dezeen-11.jpg">
+<div class="b"><div class="fn">dezeen-11.jpg</div>四台笔记本展示 M+ 网站页面（What's On、Collection Online、Become a Member）<div class="app"><b>应用解读</b>｜数字界面应用：网站（Anton & Irene 设计）延展同一色彩与栅格语言</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-12.jpg" data-cap="佩戴 M+ 工牌的员工在咨询台为访客办理会员，台面彩色 M+You 手册｜应用：服务触点应用：员工制服、工牌与现场印刷品构成完整品牌体验">
+<img loading="lazy" src="images/dezeen/dezeen-12.jpg" alt="dezeen-12.jpg">
+<div class="b"><div class="fn">dezeen-12.jpg</div>佩戴 M+ 工牌的员工在咨询台为访客办理会员，台面彩色 M+You 手册<div class="app"><b>应用解读</b>｜服务触点应用：员工制服、工牌与现场印刷品构成完整品牌体验</div></div></div>
+<div class="g-card" data-g="dezeen" data-full="images/dezeen/dezeen-13.jpg" data-cap="维港 M+ 立面 LED 方形构图（col_3 照片的方形裁剪版）｜应用：文章特色图/社交媒体方形版本，展示系统对不同裁切比例的适应性">
+<img loading="lazy" src="images/dezeen/dezeen-13.jpg" alt="dezeen-13.jpg">
+<div class="b"><div class="fn">dezeen-13.jpg</div>维港 M+ 立面 LED 方形构图（col_3 照片的方形裁剪版）<div class="app"><b>应用解读</b>｜文章特色图/社交媒体方形版本，展示系统对不同裁切比例的适应性</div></div></div>
+</div>
+<h3 class="g-head" data-g="thonik-open" style="font-size:18px;margin:30px 0 6px">thonik 官网 —《Open: M+ in Hong Kong》</h3>
+<p class="g-head" data-g="thonik-open" style="font-size:13px;color:#888;margin-bottom:16px"><a href="https://thonik.nl/stories/open-m-hong-kong" style="color:#1a6fb5">https://thonik.nl/stories/open-m-hong-kong</a></p>
+<div class="gallery">
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-01.jpg" data-cap="黄昏维港天际线，M+ 大楼 LED 立面显示青/品红/绿三色块上的白色 M+ 标志｜应用：建筑立面动态视觉：LED 幕墙作为巨型动态屏幕，中调色块+白色字标">
+<img loading="lazy" src="images/thonik-open/thonik-open-01.jpg" alt="thonik-open-01.jpg">
+<div class="b"><div class="fn">thonik-open-01.jpg</div>黄昏维港天际线，M+ 大楼 LED 立面显示青/品红/绿三色块上的白色 M+ 标志<div class="app"><b>应用解读</b>｜建筑立面动态视觉：LED 幕墙作为巨型动态屏幕，中调色块+白色字标</div></div></div>
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-02.jpg" data-cap="西区海底隧道入口旁巨型户外广告牌：紫/绿/黄/品红斜切色块，「Opens 12 November」中英双语｜应用：开馆户外大屏：英文横排+中文竖排呼应「+」的两个方向，色块切割构图">
+<img loading="lazy" src="images/thonik-open/thonik-open-02.jpg" alt="thonik-open-02.jpg">
+<div class="b"><div class="fn">thonik-open-02.jpg</div>西区海底隧道入口旁巨型户外广告牌：紫/绿/黄/品红斜切色块，「Opens 12 November」中英双语<div class="app"><b>应用解读</b>｜开馆户外大屏：英文横排+中文竖排呼应「+」的两个方向，色块切割构图</div></div></div>
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-03.jpg" data-cap="港铁站扶梯通道全覆盖广告：扶梯侧板橙/绿/品红/蓝四色，墙面双语横幅标语｜应用：地铁站沉浸式环境图形（supergraphics）：多色并置产生「视觉瘙痒」，双语竖横混排">
+<img loading="lazy" src="images/thonik-open/thonik-open-03.jpg" alt="thonik-open-03.jpg">
+<div class="b"><div class="fn">thonik-open-03.jpg</div>港铁站扶梯通道全覆盖广告：扶梯侧板橙/绿/品红/蓝四色，墙面双语横幅标语<div class="app"><b>应用解读</b>｜地铁站沉浸式环境图形（supergraphics）：多色并置产生「视觉瘙痒」，双语竖横混排</div></div></div>
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-04.jpg" data-cap="铜锣湾 SOGO 外墙巨型 LED 屏与街道上的 M+ 涂装叮叮车｜应用：城市地标大屏+电车车身广告：放大的 M/+ 字母造型作为图形母题，信息嵌入色块">
+<img loading="lazy" src="images/thonik-open/thonik-open-04.jpg" alt="thonik-open-04.jpg">
+<div class="b"><div class="fn">thonik-open-04.jpg</div>铜锣湾 SOGO 外墙巨型 LED 屏与街道上的 M+ 涂装叮叮车<div class="app"><b>应用解读</b>｜城市地标大屏+电车车身广告：放大的 M/+ 字母造型作为图形母题，信息嵌入色块</div></div></div>
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-05.jpg" data-cap="夜景 M+ 涂装叮叮车驶过巨型「M+」开馆广告墙（含 westKowloon、mplus.org.hk、旅发局标识）｜应用：开馆 campaign 整合传播：车体、墙面、网址、合作方标识统一于同一色彩系统">
+<img loading="lazy" src="images/thonik-open/thonik-open-05.jpg" alt="thonik-open-05.jpg">
+<div class="b"><div class="fn">thonik-open-05.jpg</div>夜景 M+ 涂装叮叮车驶过巨型「M+」开馆广告墙（含 westKowloon、mplus.org.hk、旅发局标识）<div class="app"><b>应用解读</b>｜开馆 campaign 整合传播：车体、墙面、网址、合作方标识统一于同一色彩系统</div></div></div>
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-06.jpg" data-cap="黄色背景上陈列的 M+ 收纳包系列：橙灰/蓝灰格纹与粉黄、青绿纯色款，贴 M+ 织标｜应用：博物馆商店产品线：中色调色谱直接转化为产品配色与图案">
+<img loading="lazy" src="images/thonik-open/thonik-open-06.jpg" alt="thonik-open-06.jpg">
+<div class="b"><div class="fn">thonik-open-06.jpg</div>黄色背景上陈列的 M+ 收纳包系列：橙灰/蓝灰格纹与粉黄、青绿纯色款，贴 M+ 织标<div class="app"><b>应用解读</b>｜博物馆商店产品线：中色调色谱直接转化为产品配色与图案</div></div></div>
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-07.jpg" data-cap="开馆周馆内服务台：员工着 M+ 标志黑夹克，台面陈列粉/绿/蓝/橙多色 M+You 会员宣传册｜应用：馆内应用+印刷品：员工制服、会员刊物使用同一色系的无限色彩组合">
+<img loading="lazy" src="images/thonik-open/thonik-open-07.jpg" alt="thonik-open-07.jpg">
+<div class="b"><div class="fn">thonik-open-07.jpg</div>开馆周馆内服务台：员工着 M+ 标志黑夹克，台面陈列粉/绿/蓝/橙多色 M+You 会员宣传册<div class="app"><b>应用解读</b>｜馆内应用+印刷品：员工制服、会员刊物使用同一色系的无限色彩组合</div></div></div>
+<div class="g-card" data-g="thonik-open" data-full="images/thonik-open/thonik-open-08.jpg" data-cap="夜晚维港，M+ LED 立面以灰/橙/绿三色块托出白色 M+ 标志，倒影映在海面｜应用：立面动态视觉夜景版：中调色在夜间 LED 上保持可读性与辨识度">
+<img loading="lazy" src="images/thonik-open/thonik-open-08.jpg" alt="thonik-open-08.jpg">
+<div class="b"><div class="fn">thonik-open-08.jpg</div>夜晚维港，M+ LED 立面以灰/橙/绿三色块托出白色 M+ 标志，倒影映在海面<div class="app"><b>应用解读</b>｜立面动态视觉夜景版：中调色在夜间 LED 上保持可读性与辨识度</div></div></div>
+</div>
+<h3 class="g-head" data-g="thonik-chromatic" style="font-size:18px;margin:30px 0 6px">thonik 官网 —《A chromatic visual identity for M+ Hong Kong》</h3>
+<p class="g-head" data-g="thonik-chromatic" style="font-size:13px;color:#888;margin-bottom:16px"><a href="https://thonik.nl/stories/a-chromatic-visual-identity-for-m-hong-kong" style="color:#1a6fb5">https://thonik.nl/stories/a-chromatic-visual-identity-for-m-hong-kong</a></p>
+<div class="gallery">
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-01.jpg" data-cap="年报跨页：橙+灰粉色大号倒 T 几何图案｜应用：将 M+ logo 的建筑倒 T 形放大为满版图形，双中调色搭配">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-01.jpg" alt="thonik-chromatic-01.jpg">
+<div class="b"><div class="fn">thonik-chromatic-01.jpg</div>年报跨页：橙+灰粉色大号倒 T 几何图案<div class="app"><b>应用解读</b>｜将 M+ logo 的建筑倒 T 形放大为满版图形，双中调色搭配</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-02.jpg" data-cap="跨页：黄+灰粉色倒 T 重复图案（大尺寸照片）｜应用：倒 T 母题平铺成纹样，两色明度均等">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-02.jpg" alt="thonik-chromatic-02.jpg">
+<div class="b"><div class="fn">thonik-chromatic-02.jpg</div>跨页：黄+灰粉色倒 T 重复图案（大尺寸照片）<div class="app"><b>应用解读</b>｜倒 T 母题平铺成纹样，两色明度均等</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-03.jpg" data-cap="跨页：黄+灰粉倒 T 图案另一变体｜应用：同一图形系统在不同版式中的延展">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-03.jpg" alt="thonik-chromatic-03.jpg">
+<div class="b"><div class="fn">thonik-chromatic-03.jpg</div>跨页：黄+灰粉倒 T 图案另一变体<div class="app"><b>应用解读</b>｜同一图形系统在不同版式中的延展</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-04.jpg" data-cap="跨页：洋红+芥末黄倒 T 图案，书脊可见「M+」字样｜应用：高对比但不刺眼的中调色组合——「visual tickle」的实证">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-04.jpg" alt="thonik-chromatic-04.jpg">
+<div class="b"><div class="fn">thonik-chromatic-04.jpg</div>跨页：洋红+芥末黄倒 T 图案，书脊可见「M+」字样<div class="app"><b>应用解读</b>｜高对比但不刺眼的中调色组合——「visual tickle」的实证</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-05.jpg" data-cap="跨页：粉+灰绿小号几何格纹｜应用：图案尺度缩小仍保持辨识度，展示系统弹性">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-05.jpg" alt="thonik-chromatic-05.jpg">
+<div class="b"><div class="fn">thonik-chromatic-05.jpg</div>跨页：粉+灰绿小号几何格纹<div class="app"><b>应用解读</b>｜图案尺度缩小仍保持辨识度，展示系统弹性</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-06.jpg" data-cap="跨页：青绿+浅绿细密棋盘格｜应用：同明度双色细密纹理作版面底纹">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-06.jpg" alt="thonik-chromatic-06.jpg">
+<div class="b"><div class="fn">thonik-chromatic-06.jpg</div>跨页：青绿+浅绿细密棋盘格<div class="app"><b>应用解读</b>｜同明度双色细密纹理作版面底纹</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-07.jpg" data-cap="跨页：青+蓝绿三角/菱形纹样｜应用：中调色在密集图案中的可读性验证">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-07.jpg" alt="thonik-chromatic-07.jpg">
+<div class="b"><div class="fn">thonik-chromatic-07.jpg</div>跨页：青+蓝绿三角/菱形纹样<div class="app"><b>应用解读</b>｜中调色在密集图案中的可读性验证</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-08.jpg" data-cap="跨页：蓝+青色小三角平铺｜应用：冷色系中调组合，跨媒介输出稳定性示例">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-08.jpg" alt="thonik-chromatic-08.jpg">
+<div class="b"><div class="fn">thonik-chromatic-08.jpg</div>跨页：蓝+青色小三角平铺<div class="app"><b>应用解读</b>｜冷色系中调组合，跨媒介输出稳定性示例</div></div></div>
+<div class="g-card" data-g="thonik-chromatic" data-full="images/thonik-chromatic/thonik-chromatic-09.jpg" data-cap="跨页：标题「A New M+ Visual Identity / M+的全新視覺識別」+ M+ 色轮，轮心为 50% 灰｜应用：核心理论图：所有颜色校准至 50% 黑等明度的中调色轮，中英双语标题横竖混排">
+<img loading="lazy" src="images/thonik-chromatic/thonik-chromatic-09.jpg" alt="thonik-chromatic-09.jpg">
+<div class="b"><div class="fn">thonik-chromatic-09.jpg</div>跨页：标题「A New M+ Visual Identity / M+的全新視覺識別」+ M+ 色轮，轮心为 50% 灰<div class="app"><b>应用解读</b>｜核心理论图：所有颜色校准至 50% 黑等明度的中调色轮，中英双语标题横竖混排</div></div></div>
+</div>
+<h3 class="g-head" data-g="thonik-annual" style="font-size:18px;margin:30px 0 6px">thonik 官网 —《M+ Annual Review》</h3>
+<p class="g-head" data-g="thonik-annual" style="font-size:13px;color:#888;margin-bottom:16px"><a href="https://thonik.nl/stories/m-annual-review" style="color:#1a6fb5">https://thonik.nl/stories/m-annual-review</a></p>
+<div class="gallery">
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-01.jpg" data-cap="一摞灰绿与橙色封面年报堆叠｜应用：双色封面版本并置：色彩系统的「可换色」模块化思路">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-01.jpg" alt="thonik-annual-01.jpg">
+<div class="b"><div class="fn">thonik-annual-01.jpg</div>一摞灰绿与橙色封面年报堆叠<div class="app"><b>应用解读</b>｜双色封面版本并置：色彩系统的「可换色」模块化思路</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-02.jpg" data-cap="打开展平的封套/折叠结构，内页彩色「+」形｜应用：封套结构本身即版式系统一部分，彩色十字预示内页图形语言">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-02.jpg" alt="thonik-annual-02.jpg">
+<div class="b"><div class="fn">thonik-annual-02.jpg</div>打开展平的封套/折叠结构，内页彩色「+」形<div class="app"><b>应用解读</b>｜封套结构本身即版式系统一部分，彩色十字预示内页图形语言</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-03.jpg" data-cap="年报封面：灰绿底、橙色「M+」加号图形、顶部彩色横条｜应用：封面将加号图形与色谱条带结合，logo 与色彩系统一体化">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-03.jpg" alt="thonik-annual-03.jpg">
+<div class="b"><div class="fn">thonik-annual-03.jpg</div>年报封面：灰绿底、橙色「M+」加号图形、顶部彩色横条<div class="app"><b>应用解读</b>｜封面将加号图形与色谱条带结合，logo 与色彩系统一体化</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-04.jpg" data-cap="跨页：橙/珊瑚色「+」形满版重复｜应用：加号作为满版图案跨页铺陈，充当章节隔断">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-04.jpg" alt="thonik-annual-04.jpg">
+<div class="b"><div class="fn">thonik-annual-04.jpg</div>跨页：橙/珊瑚色「+」形满版重复<div class="app"><b>应用解读</b>｜加号作为满版图案跨页铺陈，充当章节隔断</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-05.jpg" data-cap="数据页：黄/粉/橙三色信息图表（馆藏、面积等中英双语数据）｜应用：色彩编码信息图表：色彩承担数据分类功能，英中双语排版">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-05.jpg" alt="thonik-annual-05.jpg">
+<div class="b"><div class="fn">thonik-annual-05.jpg</div>数据页：黄/粉/橙三色信息图表（馆藏、面积等中英双语数据）<div class="app"><b>应用解读</b>｜色彩编码信息图表：色彩承担数据分类功能，英中双语排版</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-06.jpg" data-cap="跨页：黄/赭色「+」满版图案｜应用：同一图形母题换配色复用，证明系统可扩展性">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-06.jpg" alt="thonik-annual-06.jpg">
+<div class="b"><div class="fn">thonik-annual-06.jpg</div>跨页：黄/赭色「+」满版图案<div class="app"><b>应用解读</b>｜同一图形母题换配色复用，证明系统可扩展性</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-07.jpg" data-cap="内页：Sigg Prize 2019 展览文章+工地照片｜应用：图文网格：左侧竖排书脊文字+正文栏+大幅图片的标准版式">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-07.jpg" alt="thonik-annual-07.jpg">
+<div class="b"><div class="fn">thonik-annual-07.jpg</div>内页：Sigg Prize 2019 展览文章+工地照片<div class="app"><b>应用解读</b>｜图文网格：左侧竖排书脊文字+正文栏+大幅图片的标准版式</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-08.jpg" data-cap="跨页：粉/黄「+」棋盘格满版｜应用：加号图案与方格网格叠加，色彩对撞强化视觉节奏">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-08.jpg" alt="thonik-annual-08.jpg">
+<div class="b"><div class="fn">thonik-annual-08.jpg</div>跨页：粉/黄「+」棋盘格满版<div class="app"><b>应用解读</b>｜加号图案与方格网格叠加，色彩对撞强化视觉节奏</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-09.jpg" data-cap="内页：建筑平面图彩色线图+两侧正文栏｜应用：图片居中、双栏文字环绕的网格系统，书脊处露出彩色纸边">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-09.jpg" alt="thonik-annual-09.jpg">
+<div class="b"><div class="fn">thonik-annual-09.jpg</div>内页：建筑平面图彩色线图+两侧正文栏<div class="app"><b>应用解读</b>｜图片居中、双栏文字环绕的网格系统，书脊处露出彩色纸边</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-10.jpg" data-cap="内页：设计藏品照片（椅子等）+ 三栏文字｜应用：多栏网格+图注体系：藏品章节的版式规范">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-10.jpg" alt="thonik-annual-10.jpg">
+<div class="b"><div class="fn">thonik-annual-10.jpg</div>内页：设计藏品照片（椅子等）+ 三栏文字<div class="app"><b>应用解读</b>｜多栏网格+图注体系：藏品章节的版式规范</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-11.jpg" data-cap="跨页：粉/灰绿「+」满版图案｜应用：又一组配色的图案跨页，色彩系统覆盖全书章节">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-11.jpg" alt="thonik-annual-11.jpg">
+<div class="b"><div class="fn">thonik-annual-11.jpg</div>跨页：粉/灰绿「+」满版图案<div class="app"><b>应用解读</b>｜又一组配色的图案跨页，色彩系统覆盖全书章节</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-12.jpg" data-cap="「A New M+ Visual Identity」文章页：色轮图+中英竖排标题｜应用：直接阐述 VI 方法论：色轮为 identity 核心，中英双语并重">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-12.jpg" alt="thonik-annual-12.jpg">
+<div class="b"><div class="fn">thonik-annual-12.jpg</div>「A New M+ Visual Identity」文章页：色轮图+中英竖排标题<div class="app"><b>应用解读</b>｜直接阐述 VI 方法论：色轮为 identity 核心，中英双语并重</div></div></div>
+<div class="g-card" data-g="thonik-annual" data-full="images/thonik-annual/thonik-annual-13.jpg" data-cap="封面侧视：灰绿底+橙色加号图形+顶部彩条｜应用：封面图形近景：彩条与单色大形的对比构成">
+<img loading="lazy" src="images/thonik-annual/thonik-annual-13.jpg" alt="thonik-annual-13.jpg">
+<div class="b"><div class="fn">thonik-annual-13.jpg</div>封面侧视：灰绿底+橙色加号图形+顶部彩条<div class="app"><b>应用解读</b>｜封面图形近景：彩条与单色大形的对比构成</div></div></div>
+</div>
+</div></section>
+<section id="sources"><div class="wrap">
+<div class="kicker">Sources</div><h2 class="sec">资料来源</h2>
+<p class="sec-sub">本面板全部事实与图片均来自以下官方/权威来源；thonik 未公布官方 hex 色值与字体声明，色板为从官方图片取色的研究性重建，字体信息为对 M+ 官网实际加载字体的核查结果。</p>
+<ul class="src-list">
+<li>Dezeen（2022-10-18）— <a href="https://www.dezeen.com/2022/10/18/thonik-visual-identity-m-museum/">Thonik creates colourful visual identity for Hong Kong's M+ museum</a>（13 张图片 + 正文）</li>
+<li>thonik 官网 — <a href="https://thonik.nl/stories/open-m-hong-kong">Open: M+ in Hong Kong</a>（8 张图片 + 项目说明）</li>
+<li>thonik 官网 — <a href="https://thonik.nl/stories/a-chromatic-visual-identity-for-m-hong-kong">A chromatic visual identity for M+ Hong Kong</a>（9 张图片，Adrian Shaughnessy 撰文）</li>
+<li>thonik 官网 — <a href="https://thonik.nl/stories/m-annual-review">M+ Annual Review</a>（13 张图片，摄影 Kimberley Zondag）</li>
+<li>M+ 官网 — <a href="https://www.mplus.org.hk/en/the-building/people/">The Building</a> / <a href="https://www.mplus.org.hk/en/magazine/building-mplus/">M+ Magazine：馆名由来访谈</a> / <a href="https://www.mplus.org.hk/en/magazine/web-design-is-visual-culture/">网站设计文章</a></li>
+<li>thonik 官网项目页 — <a href="https://thonik.nl/work/colourful-identity-for-m-museum-hong-kong">Colourful identity for M+ museum Hong Kong</a>（奖项记录）</li>
+<li>Communication Arts — <a href="https://www.commarts.com/webpicks/m-plus">M+ Webpick</a>（North 标志设计佐证）</li>
+<li>Tokyo TDC — <a href="https://tokyotypedirectorsclub.org/en/news/tdc2023-results/">TDC 2023 结果</a></li>
+</ul>
+</div></section>
+<footer><div class="wrap"><b>M+ Visual Identity 研究面板</b><br>研究、取色与套件重建：基于官方公开资料 · 生成时间 2026-08-18<br>M+ 标志与品牌资产版权归 M+ 博物馆及相关设计方所有，本项目仅供研究与学习用途。</div></footer>
+<div id="lightbox"><span class="x" onclick="lb.style.display='none'">&times;</span><img id="lbimg"><div class="cap" id="lbcap"></div></div>
+<script>
+const lb=document.getElementById('lightbox'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
+document.querySelectorAll('.g-card').forEach(c=>c.addEventListener('click',()=>{lbimg.src=c.dataset.full;lbcap.textContent=c.dataset.cap;lb.style.display='flex'}));
+lb.addEventListener('click',e=>{if(e.target===lb)lb.style.display='none'});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+ const f=t.dataset.f;
+ document.querySelectorAll('.g-card').forEach(c=>c.style.display=(f==='all'||c.dataset.g===f)?'flex':'none');
+ document.querySelectorAll('.g-head').forEach(h=>h.style.display=(f==='all'||h.dataset.g===f)?'':'none');
+}));
+</script>
+</body></html>
